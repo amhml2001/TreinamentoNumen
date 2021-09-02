@@ -1,0 +1,309 @@
+{
+  "namespace": "app.interactionsNW",
+  "definitions": {
+    "app.interactionsNW.Northwind_Categories": {
+      "kind": "entity",
+      "elements": {
+        "CategoryID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "ITEMS": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "app.interactionsNW.Northwind_Products",
+          "on": [
+            {
+              "ref": [
+                "ITEMS",
+                "CategoryID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "CategoryName": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "Description": {
+          "type": "cds.String",
+          "length": 100
+        }
+      }
+    },
+    "app.interactionsNW.Northwind_Products": {
+      "kind": "entity",
+      "elements": {
+        "ProductID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "ProductName": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "SupplierId": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "CategoryID": {
+          "key": true,
+          "type": "cds.Association",
+          "target": "app.interactionsNW.Northwind_Categories",
+          "keys": [
+            {
+              "ref": [
+                "CategoryID"
+              ]
+            }
+          ]
+        },
+        "QuantityPerUnit": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "UnitPrice": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "UnitsInStock": {
+          "type": "cds.Integer"
+        },
+        "UnitOnOrder": {
+          "type": "cds.Integer"
+        },
+        "ReorderLevel": {
+          "type": "cds.Integer"
+        },
+        "Discontinued": {
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "app.interactionsNW.Northwind_Customers": {
+      "kind": "entity",
+      "elements": {
+        "CustomerID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5
+        },
+        "CompanyName": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "ContactName": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "ContactTitle": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "Address": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "City": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "PostalCode": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "Country": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Phone": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Fax": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Region": {
+          "type": "cds.String",
+          "length": 20
+        }
+      }
+    },
+    "CatalogService": {
+      "@source": "interactionsNW.cds",
+      "kind": "service"
+    },
+    "CatalogService.Northwind_Categories": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.interactionsNW.Northwind_Categories"
+          ]
+        }
+      },
+      "elements": {
+        "CategoryID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "ITEMS": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CatalogService.Northwind_Products",
+          "on": [
+            {
+              "ref": [
+                "ITEMS",
+                "CategoryID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "CategoryName": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "Description": {
+          "type": "cds.String",
+          "length": 100
+        }
+      }
+    },
+    "CatalogService.Northwind_Products": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.interactionsNW.Northwind_Products"
+          ]
+        }
+      },
+      "elements": {
+        "ProductID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "ProductName": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "SupplierId": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "CategoryID": {
+          "key": true,
+          "type": "cds.Association",
+          "target": "CatalogService.Northwind_Categories",
+          "keys": [
+            {
+              "ref": [
+                "CategoryID"
+              ]
+            }
+          ]
+        },
+        "QuantityPerUnit": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "UnitPrice": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "UnitsInStock": {
+          "type": "cds.Integer"
+        },
+        "UnitOnOrder": {
+          "type": "cds.Integer"
+        },
+        "ReorderLevel": {
+          "type": "cds.Integer"
+        },
+        "Discontinued": {
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "CatalogService.Northwind_Customers": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "app.interactionsNW.Northwind_Customers"
+          ]
+        }
+      },
+      "elements": {
+        "CustomerID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5
+        },
+        "CompanyName": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "ContactName": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "ContactTitle": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "Address": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "City": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "PostalCode": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "Country": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Phone": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Fax": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Region": {
+          "type": "cds.String",
+          "length": 20
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v2.5.2",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}
