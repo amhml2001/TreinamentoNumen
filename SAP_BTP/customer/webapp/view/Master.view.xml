@@ -1,0 +1,38 @@
+<mvc:View
+    controllerName="customer.controller.Master"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+
+    <Page id="page" title="Customers">
+        <content>
+            <Table
+                id="tableCustomers"
+                width="auto"
+                alternateRowColors="true"
+                contextualWidth="Auto"
+                growing="true"
+                growingThreshold="30"
+                growingScrollToLoad="true"
+                items="{ path: 'Customers' }">
+                <headerToolbar>
+
+                    <OverflowToolbar>
+                        <Title text="Customers"/>
+                        <ToolbarSpacer/>
+                        <SearchField search=".onSearch"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <items>
+                    <ColumnListItem type="Navigation" press="onListPressItem">
+                        <cells>
+                            <ObjectIdentifier
+                                title="{CompanyName}"
+                                text="{Country}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

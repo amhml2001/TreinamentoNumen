@@ -1,0 +1,22 @@
+{
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "start-local",
+            "path": "app_001_amh/",
+            "problemMatcher": [
+                "$deployToABAP"
+            ],
+            "label": "start-local - app_001_amh"
+        },
+        {
+            "type": "npm",
+            "script": "start-noflp",
+            "path": "ztlnt2021_001_amh/",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ],
+            "label": "start-noflp - ztlnt2021_001_amh"
+        }
+    ]
+}
